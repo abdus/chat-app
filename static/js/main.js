@@ -102,49 +102,55 @@ document.getElementById('user-submit').addEventListener('click', e => {
     }
 })
 
+// _id: "5c1148674b72060051c1b8fb"
+// // // avatar: "https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg"
+// message: "/tts korilu ko etia"
+// messageType: "text"
+// name: "ARUP jyoti"
+// time: 1544636518999
+// user_id: "MC41NTQxMDM3MjQ5Njg0ODMz"
 
-// FUNCTIONS
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+let oldMessagesContainer = document.getElementById('old-messages')
+
+// Fill old messages in DB 
+fetch('/messages')
+.then(res => res.json())
+.then(res => {
+    for(let i of res) {
+        if (i.messageType === 'image') {
+            oldMessagesContainer.innerHTML += `
+                <div class="card">
+                    <div class="user-img">
+                        <img src="${i.avatar}" alt="">
+                    </div>
+                    <div class="message-meta">
+                        <div class="meta">${i.name} ${messageTime(i.time)}</div>
+                        <div class="message"><img src="${i.imgSrc}" alt="" /></div>
+                    </div>
+                </div>
+            `
+        } else {
+            oldMessagesContainer.innerHTML += `
+                <div class="card">
+                    <div class="user-img">
+                        <img src="${i.avatar}" alt="">
+                    </div>
+                    <div class="message-meta">
+                        <div class="meta">${i.name} ${messageTime(i.time)}</div>
+                        <div class="message">
+                            ${i.message.split('/tts ').length > 1 ? i.message.split('/tts ')[1] : i.message}
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+
+        // show the latest chats 
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        
+        // get the last .card, check if sender and reciver is same, and modify accordingly
+        if(i.user_id === getCookie('_id')) {
+            Array.from(document.querySelectorAll('.card')).pop().style.background = '#c4c4c469'
+        }
     }
-    return "";
-}
-
-// for parsing date
-const messageTime = dateMili => {
-    let dateStr = new Date(dateMili).toString();
-    let dateNowStr = new Date(Date.now()).toString();
-    let date = dateStr.split(' ')[2] + ' ' + dateStr.split(' ')[1] + ' ' + dateStr.split(' ')[3];
-    let dateNow = dateNowStr.split(' ')[2] + ' ' + dateNowStr.split(' ')[1] + ' ' + dateNowStr.split(' ')[3];
-    let time = dateStr.split(' ')[4].split(':');
-    time = time[0] + ':' + time[1];
-
-    if (date === dateNow) return `at ${time}`;
-    else return `on ${date} at ${time}`;
-}
-
-// Function Emit Chat
-const chatEventEmitter = () => {
-    if (inputField.value.trim() !== '') {
-        socket.emit('chat', {
-            _id: getCookie('_id'),
-            type: 'text',
-            name: getCookie('username'),
-            message: inputField.value,
-            time: Date.now(),
-            avatar: getCookie('avatar') !== '' ? getCookie('avatar') : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg'
-        });
-        inputField.value = '';
-        typingStatus.style.display = 'none'
-    }
-}
+})

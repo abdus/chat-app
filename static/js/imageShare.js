@@ -45,12 +45,3 @@ imageSubmitButton.addEventListener('click', e => {
     imageInputField.value = '';
 })
 
-
-// converts image to base64 uri
-const toDataURI = (fileInput, cb) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(fileInput.files[0]);
-    reader.onload = () => {
-        cb(reader.result);
-    };
-}

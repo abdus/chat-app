@@ -4,7 +4,9 @@
     </span>
     <div class="chat-window">
         <div class="hide-typing-status"> <span id="typers"></span> is typing</div>
-        <div class="hide-scroll-bar" id="chat-window"></div>
+        <div class="hide-scroll-bar" id="chat-window">
+            <div id="old-messages"></div>
+        </div>
     </div>
     <div class="chat-box">
         <button class="image-share-button" id="image-share-button"><i class="fas fa-image"></i></button>
@@ -16,7 +18,7 @@
 <div id="model">
     <form>
         <h1>Welcome</h1>
-        <h3>This Chat Room is Completely Anonymous. We Don't Even Save Your Chat History.</h3>
+        <h3>This Chat Room is Completely Anonymous.</h3>
         <h3>Enter Your Name & Link to Profile Photo</h3>
         <div style="margin-bottom: 15px;">(Not changeable unless you know where I am storing it :) )</div>
         <input type="text" value="" placeholder="Enter Your Name" id="user-name" required> <br>
