@@ -1,7 +1,8 @@
 const express = require('express');
 const socket = require('socket.io');
 const exphbs  = require('express-handlebars');
-const routes = require('./routes/routes')
+const routes = require('./routes/routes');
+const msgSchema = require('./db/messageSchema');
 
 // app setup
 const app = express();
@@ -32,6 +33,16 @@ io.on('connection', socket => {
     // emit a new chat message
     socket.on('chat', data => {
         io.sockets.emit('chat', data);
+        data = new msgSchema({
+            user_id: data._id,
+            messageType: data.type,
+            name: data.name,
+            message: data.message,
+            imgSrc: data.imgSrc,
+            time: data.time,
+            avatar: data.avatar
+        });
+        data.save();
     })
 
     // typing... status

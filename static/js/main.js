@@ -7,31 +7,36 @@ let sendButton = document.getElementById('send-message');
 let nameOfTypers = document.getElementById('typers');
 let typingStatus = document.querySelector('.hide-typing-status');
 let userName = document.getElementById('user-name');
+let userAvatar = document.getElementById('user-avatar');
 let onlineCounter = document.querySelector('#online-count')
 
 // Emmit a message on clicking send
 sendButton.addEventListener('click', e => {
     chatEventEmitter();
-    inputField.value = '';
 });
 
-// TODO: refactor this
+// Emit an event on pressing enter
 inputField.addEventListener('keydown', e => {
     if(e.key === 'Enter') {
         chatEventEmitter();
     }
-});
-
-// Emit typing....
-inputField.addEventListener('keydown', e => {
+    // Emit typing... status 
     socket.emit('typing', {
         name: getCookie('username')
     })
-})
+});
+
+// hide typing status is every 4 sec
+setInterval(e => {
+    typingStatus.style.display = 'none';
+}, 4000)
 
 
 // get message and write it to window 
 socket.on('chat', e => {
+    // Play notification sound 
+    let audio = new Audio('/sounds/all-eyes-on-me.mp3');
+    audio.play();
 
     // write data on chat window
     if (e.type === 'image') {
@@ -66,28 +71,12 @@ socket.on('chat', e => {
 
     // show the latest chats 
     chatWindow.scrollTop = chatWindow.scrollHeight;
-
-    // remove 'typing...' badge on reciver
-    if (typingStatus.classList.contains('reveal-typing-status')) {
-        typingStatus.classList.toggle('reveal-typing-status')
-        nameOfTypers.innerHTML = '';
-    } else {
-        nameOfTypers.innerHTML = '';
-    }
-
-    // Play notification sound 
-    let audio = new Audio('/sounds/definite.mp3');
-    audio.play();
 })
 
 // typing status reciever
 socket.on('typing', e => {
-    if (!typingStatus.classList.contains('reveal-typing-status')) {
-        typingStatus.classList.toggle('reveal-typing-status');
-        nameOfTypers.innerHTML = `${(e.name).split(' ')[0]}`
-    } else {
-        nameOfTypers.innerHTML = `${(e.name).split(' ')[0]}`
-    }
+    typingStatus.style.display = 'block'
+    nameOfTypers.innerHTML = `${(e.name).split(' ')[0]}`
 })
 
 // online count reciever (1sec int)
@@ -107,6 +96,7 @@ document.getElementById('user-submit').addEventListener('click', e => {
     e.preventDefault();
     if (userName.value.trim() !== '') {
         document.cookie = 'username=' + userName.value.trim() + '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
+        document.cookie = 'avatar=' + userAvatar.value.trim() + '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
         document.cookie = '_id=' + btoa(Math.random()) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
         document.getElementById('model').style.display = 'none';
     }
@@ -152,14 +142,9 @@ const chatEventEmitter = () => {
             name: getCookie('username'),
             message: inputField.value,
             time: Date.now(),
-            avatar: 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg'
+            avatar: getCookie('avatar') !== '' ? getCookie('avatar') : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg'
         });
         inputField.value = '';
-        if (typingStatus.classList.contains('reveal-typing-status')) {
-            typingStatus.classList.toggle('reveal-typing-status')
-            nameOfTypers.innerHTML = '';
-        } else {
-            nameOfTypers.innerHTML = '';
-        }
-    } 
+        typingStatus.style.display = 'none'
+    }
 }

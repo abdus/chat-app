@@ -35,7 +35,7 @@ imageSubmitButton.addEventListener('click', e => {
             name: getCookie('username'),
             imgSrc: uri,
             time: Date.now(),
-            avatar: faker.image.avatar()
+            avatar: getCookie('avatar') !== '' ? getCookie('avatar') : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg'
         });
     });
 
@@ -43,7 +43,6 @@ imageSubmitButton.addEventListener('click', e => {
     imagePreviewer.removeChild(imagePreviewer.childNodes[0]);
     imageShareWindow.style.display = 'none';
     imageInputField.value = '';
-    console.log("IMAGE PREV ", imagePreviewer.src)
 })
 
 

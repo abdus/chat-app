@@ -43,7 +43,7 @@ nav {
     border-radius: 4px;
     padding: .2rem .4rem;
     background: #c4c4c469;
-    position: absolute;
+    position: fixed;
     top: 3px;
     right: 3px;
 }
@@ -67,10 +67,10 @@ nav {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     transition: .2s ease-out all;
-    visibility: hidden;
+    display: none;
 }
 .reveal-typing-status {
-    visibility: visible;
+    display: block;
 }
 #chat .chat-window .hide-scroll-bar {
     min-height: 83vh;
