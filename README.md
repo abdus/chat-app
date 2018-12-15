@@ -1,13 +1,14 @@
-<div style="text-align: center">
+<p style="align: center">
     <h1>Chat App</h1>
     <a href="https://codeclimate.com/github/thisisabdus/chat-app/maintainability"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/maintainability" /></a>
     <a href="https://codeclimate.com/github/thisisabdus/chat-app/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/test_coverage" /></a>
     <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" /></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
     <a href="https://david-dm.org/thisisabdus/chat-app"><img src="https://david-dm.org/thisisabdus/chat-app.svg" /></a>
-    <br><br><br>
+    <a href="#"><img src="https://github-basic-badges.herokuapp.com/commits/thisisabdus/chat-app.svg" /></a>
+    <br><br>
     Chat App built using <a href="https://socket.io">Socket.io</a>, NodeJS and Vanilla JavaScript 🔥 This is my first project where I successfully implemented web-sockets and a Real-Time data exchange between server and client. 
-</div>
+</p>
 
 ### Features
 
