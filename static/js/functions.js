@@ -48,7 +48,8 @@ const chatEventEmitter = () => {
             name: getCookie('username'),
             message: inputField.value,
             time: Date.now(),
-            avatar: getCookie('avatar') !== '' ? getCookie('avatar') : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg'
+            avatar: getCookie('avatar') !== '' ? getCookie('avatar') : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg',
+            chatRoom: window.location.pathname.split('/')[2]
         });
         inputField.value = '';
         typingStatus.style.display = 'none'
@@ -63,4 +64,33 @@ const toDataURI = (fileInput, cb) => {
     reader.onload = () => {
         cb(reader.result);
     };
+}
+
+
+// Function that will write messages in message-window 
+const writeMessage = (message) => {
+    if (message.type === 'image') {
+        return `<div class="card">
+                <div class="user-img">
+                    <img src="${message.avatar}" alt="">
+                </div>
+                <div class="message-meta">
+                    <div class="meta">${message.name} ${messageTime(message.time)}</div>
+                    <div class="message"><img src="${message.imgSrc}" alt="" /></div>
+                </div>
+            </div>
+        `
+    } else {
+        return `
+            <div class="card">
+                <div class="user-img">
+                    <img src="${message.avatar}" alt="">
+                </div>
+                <div class="message-meta">
+                    <div class="meta">${message.name} ${messageTime(message.time)}</div>
+                    <div class="message">${tts(message.message) ? tts(message.message) : message.message}</div>
+                </div>
+            </div>
+        `
+    }
 }

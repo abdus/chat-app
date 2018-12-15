@@ -20,20 +20,24 @@ app.use(routes);
 
 // socket.io setup
 let io = socket(server);
-let totalConnectedClient = 0;
+let totalConnectedClient = {};
 
 io.on('connection', socket => {
-    totalConnectedClient += 1;
+    let roomName = socket.handshake.query.roomname;
+    socket.join(roomName);
+
+    totalConnectedClient[roomName] = totalConnectedClient[roomName] ? totalConnectedClient[roomName] + 1 : 1;
 
     // on socket disconnection
     socket.on('disconnect', socket => {
-        totalConnectedClient -= 1;
+        totalConnectedClient[roomName] = totalConnectedClient[roomName] ? totalConnectedClient[roomName] - 1 : 1;
     })
     
     // emit a new chat message
     socket.on('chat', data => {
-        io.sockets.emit('chat', data);
+        io.to(roomName).emit('chat', data);
         data = new msgSchema({
+            chatRoom: data.chatRoom,
             user_id: data._id,
             messageType: data.type,
             name: data.name,
@@ -48,11 +52,11 @@ io.on('connection', socket => {
     // typing... status
     socket.on('typing', data => {
         data.onlineCount = totalConnectedClient;
-        socket.broadcast.emit('typing', data);
+        socket.broadcast.to(roomName).emit('typing', data);
     })
 
     // for sending onlineCount every second
     setInterval(e => {
-        io.sockets.emit('onlineCount', {count: totalConnectedClient})
+        io.to(roomName).emit('onlineCount', {count: totalConnectedClient[roomName]})
     }, 1000)
 })

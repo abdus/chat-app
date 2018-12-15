@@ -1,4 +1,4 @@
-let socket = io();
+let socket = io({query: 'roomname=' + window.location.pathname.split('/')[2] });
 
 // query DOM
 let chatWindow = document.getElementById('chat-window');
@@ -39,31 +39,8 @@ socket.on('chat', e => {
     audio.play();
 
     // write data on chat window
-    if (e.type === 'image') {
-        chatWindow.innerHTML += `
-            <div class="card">
-                <div class="user-img">
-                    <img src="${e.avatar}" alt="">
-                </div>
-                <div class="message-meta">
-                    <div class="meta">${e.name} ${messageTime(e.time)}</div>
-                    <div class="message"><img src="${e.imgSrc}" alt="" /></div>
-                </div>
-            </div>
-        `
-    } else {
-        chatWindow.innerHTML += `
-            <div class="card">
-                <div class="user-img">
-                    <img src="${e.avatar}" alt="">
-                </div>
-                <div class="message-meta">
-                    <div class="meta">${e.name} ${messageTime(e.time)}</div>
-                    <div class="message">${tts(e.message) ? tts(e.message) : e.message}</div>
-                </div>
-            </div>
-        `
-    }
+    chatWindow.innerHTML += writeMessage(e);
+   
     // get the last .card, check if sender and reciver is same, and modify accordingly
     if(e._id === getCookie('_id')) {
         Array.from(document.querySelectorAll('.card')).pop().style.background = '#c4c4c469'
@@ -102,30 +79,24 @@ document.getElementById('user-submit').addEventListener('click', e => {
     }
 })
 
-// _id: "5c1148674b72060051c1b8fb"
-// // // avatar: "https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg"
-// message: "/tts korilu ko etia"
-// messageType: "text"
-// name: "ARUP jyoti"
-// time: 1544636518999
-// user_id: "MC41NTQxMDM3MjQ5Njg0ODMz"
 
 let oldMessagesContainer = document.getElementById('old-messages')
 
 // Fill old messages in DB 
-fetch('/messages')
+fetch('/messages/' + window.location.pathname.split('/')[2])
 .then(res => res.json())
 .then(res => {
-    for(let i of res) {
-        if (i.messageType === 'image') {
+    oldMessagesContainer.innerHTML = '';       // clear container text
+    for(let i in res) {
+        if (res[i].messageType === 'image') {
             oldMessagesContainer.innerHTML += `
                 <div class="card">
                     <div class="user-img">
-                        <img src="${i.avatar}" alt="">
+                        <img src="${res[i].avatar}" alt="">
                     </div>
                     <div class="message-meta">
-                        <div class="meta">${i.name} ${messageTime(i.time)}</div>
-                        <div class="message"><img src="${i.imgSrc}" alt="" /></div>
+                        <div class="meta">${res[i].name} ${messageTime(res[i].time)}</div>
+                        <div class="message"><img src="${res[i].imgSrc}" alt="" /></div>
                     </div>
                 </div>
             `
@@ -133,12 +104,12 @@ fetch('/messages')
             oldMessagesContainer.innerHTML += `
                 <div class="card">
                     <div class="user-img">
-                        <img src="${i.avatar}" alt="">
+                        <img src="${res[i].avatar}" alt="">
                     </div>
                     <div class="message-meta">
-                        <div class="meta">${i.name} ${messageTime(i.time)}</div>
+                        <div class="meta">${res[i].name} ${messageTime(res[i].time)}</div>
                         <div class="message">
-                            ${i.message.split('/tts ').length > 1 ? i.message.split('/tts ')[1] : i.message}
+                            ${res[i].message.split('/tts ').length > 1 ? res[i].message.split('/tts ')[1] : res[i].message}
                         </div>
                     </div>
                 </div>
@@ -149,8 +120,9 @@ fetch('/messages')
         chatWindow.scrollTop = chatWindow.scrollHeight;
         
         // get the last .card, check if sender and reciver is same, and modify accordingly
-        if(i.user_id === getCookie('_id')) {
+        if(res[i].user_id === getCookie('_id')) {
             Array.from(document.querySelectorAll('.card')).pop().style.background = '#c4c4c469'
         }
     }
 })
+

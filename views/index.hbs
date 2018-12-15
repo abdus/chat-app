@@ -2,10 +2,24 @@
     <span class="online-count">
         <i class="fas fa-circle" style="color: #00ff00"></i> <span id="online-count">0</span> Online
     </span>
+    <div class="">
+        <span class="new-room" id="new-room"><i class="fas fa-person-booth"></i> room</span>
+        <div id="room-card" class="room-card room-card-hide">
+            <h1>New Room</h1>
+            <input type="text" placeholder="Room Name">
+            <button>Create</button>
+            <br><br>
+            <div><a style="color: pink" href="" id="room-url"></a></div>
+            <br><br>
+            TIP: Keep the above field blank to generate a secret room ;)
+            <br><br>
+            <button id="cancel-room-creation">Cancel</button>
+        </div>
+    </div>
     <div class="chat-window">
         <div class="hide-typing-status"> <span id="typers"></span> is typing</div>
         <div class="hide-scroll-bar" id="chat-window">
-            <div id="old-messages"></div>
+            <div id="old-messages"><div class="info">Loading Old Messages.... Please Wait!</div></div>
         </div>
     </div>
     <div class="chat-box">
