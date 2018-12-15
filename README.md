@@ -1,4 +1,4 @@
-<p style="align: center">
+<p align="center">
     <h1>Chat App</h1>
     <a href="https://codeclimate.com/github/thisisabdus/chat-app/maintainability"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/maintainability" /></a>
     <a href="https://codeclimate.com/github/thisisabdus/chat-app/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/test_coverage" /></a>
