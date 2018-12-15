@@ -5,7 +5,6 @@
     <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" /></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
     <a href="https://david-dm.org/thisisabdus/chat-app"><img src="https://david-dm.org/thisisabdus/chat-app.svg" /></a>
-    <a href="#"><img src="https://github-basic-badges.herokuapp.com/commits/thisisabdus/chat-app.svg" /></a>
     <br><br>
     Chat App built using <a href="https://socket.io">Socket.io</a>, NodeJS and Vanilla JavaScript 🔥 This is my first project where I successfully implemented web-sockets and a Real-Time data exchange between server and client. 
 </p>
