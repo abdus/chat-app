@@ -6,7 +6,7 @@
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
     <a href="https://david-dm.org/thisisabdus/chat-app"><img src="https://david-dm.org/thisisabdus/chat-app.svg" /></a>
     <br><br>
-    Chat App built using <a href="https://socket.io">Socket.io</a>, NodeJS and Vanilla JavaScript 🔥 This is my first project where I successfully implemented web-sockets and a Real-Time data exchange between server and client. 
+    Chat App built using <a href="https://socket.io">Socket.io</a>, NodeJS and Vanilla JavaScript 🔥 This is my first project where I successfully implemented web-sockets and Real-Time data exchange between server and client. 
 </p>
 
 ### Features
