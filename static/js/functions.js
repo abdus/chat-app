@@ -13,10 +13,10 @@ function getCookie(cname) {
   var ca = decodedCookie.split(';');
   for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) == 0) {
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
@@ -50,15 +50,14 @@ const messageTime = dateMili => {
 const chatEventEmitter = () => {
   if (inputField.value.trim() !== '') {
     socket.emit('chat', {
-      _id: getCookie('_id'),
+      jwt: getCookie('jwt'),
       type: 'text',
-      name: getCookie('username'),
       message: inputField.value,
       time: Date.now(),
       avatar:
         getCookie('avatar') !== ''
           ? getCookie('avatar')
-          : 'https://banner2.kisspng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg',
+          : 'https://pixel.nymag.com/imgs/daily/vulture/2018/11/02/02-avatar-2.w700.h700.jpg',
       chatRoom: window.location.pathname.split('/')[2],
     });
     inputField.value = '';

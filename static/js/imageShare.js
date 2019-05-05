@@ -31,7 +31,7 @@ imageSubmitButton.addEventListener('click', e => {
   toDataURI(imageInputField, uri => {
     socket.emit('chat', {
       type: 'image',
-      name: getCookie('username'),
+      jwt: getCookie('jwt'),
       imgSrc: uri,
       time: Date.now(),
       avatar:

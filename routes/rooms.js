@@ -1,11 +1,9 @@
 const r = require('express').Router();
-
-r.get('/', (req, res) => {
-  res.redirect('/');
-});
+const { isLoggedIn } = require('../controller/auth.controller');
 
 r.get('/:roomname', (req, res) => {
-  return res.render('index');
+  if (req.auth.code === 100) res.render('chat');
+  else res.redirect('/');
 });
 
 module.exports = r;

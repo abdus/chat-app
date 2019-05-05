@@ -8,8 +8,6 @@ let inputField = document.getElementById('message-input');
 let sendButton = document.getElementById('send-message');
 let nameOfTypers = document.getElementById('typers');
 let typingStatus = document.querySelector('.hide-typing-status');
-let userName = document.getElementById('user-name');
-let userAvatar = document.getElementById('user-avatar');
 let onlineCounter = document.querySelector('#online-count');
 
 // Emmit a message on clicking send
@@ -61,31 +59,6 @@ socket.on('typing', e => {
 // online count reciever (1sec int)
 socket.on('onlineCount', e => {
   onlineCounter.innerHTML = e.count;
-});
-
-//  check if name already exist before displaying 'Enter Name' splash screen
-if (getCookie('username') !== '') {
-  document.getElementById('model').style.display = 'none';
-} else {
-  document.getElementById('model').style.display = 'block';
-}
-
-// display 'Enter Name' splash screen
-document.getElementById('user-submit').addEventListener('click', e => {
-  e.preventDefault();
-  if (userName.value.trim() !== '') {
-    document.cookie =
-      'username=' +
-      userName.value.trim() +
-      '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
-    document.cookie =
-      'avatar=' +
-      userAvatar.value.trim() +
-      '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
-    document.cookie =
-      '_id=' + btoa(Math.random()) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
-    document.getElementById('model').style.display = 'none';
-  }
 });
 
 let oldMessagesContainer = document.getElementById('old-messages');
