@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const socket = require('socket.io');
 const exphbs = require('express-handlebars');
@@ -75,8 +76,16 @@ io.on('connection', socket => {
 
   // typing... status
   socket.on('typing', data => {
-    data.onlineCount = totalConnectedClient;
-    socket.broadcast.to(roomName).emit('typing', data);
+    decodeToken(data.jwt)
+      .then(async d => {
+        const user = await userSchema.findById(d.id);
+        data.name = user.name;
+        data.onlineCount = totalConnectedClient;
+        socket.broadcast.to(roomName).emit('typing', data);
+      })
+      .catch(e => {
+        console.log(e.message);
+      });
   });
 
   // for sending onlineCount every second

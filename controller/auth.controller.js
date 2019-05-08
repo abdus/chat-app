@@ -1,7 +1,7 @@
 const { userSchema } = require('../db');
 const { decodeToken, generateJWT } = require('../auth/jwt.auth');
 const { parseJWT } = require('../utils/helpers');
-const sendMail = require('../modules/sendMail');
+const sendMail = require('../lib/sendMail');
 
 /**
  * This middleware checks if a user is loggedin or not.
@@ -99,7 +99,9 @@ const handleSignUp = (req, res, next) => {
             // send a email confirmation mail
             sendMail(
               e.email,
-              `${req.hostname}/verify/${e.emailVerificationToken}`
+              `${process.env.npm_package_homepage}/verify/${
+                e.emailVerificationToken
+              }`
             ).catch(err => console.log(err.message));
 
             req.handleSignup = {

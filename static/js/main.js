@@ -22,7 +22,7 @@ inputField.addEventListener('keydown', e => {
   }
   // Emit typing... status
   socket.emit('typing', {
-    name: getCookie('username'),
+    jwt: getCookie('jwt'),
   });
 });
 

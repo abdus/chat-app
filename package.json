@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Channel based chat app",
   "main": "app.js",
+  "homepage": "https://quick-chat.now.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node app.js",
