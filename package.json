@@ -1,13 +1,25 @@
 {
-  "name": "forum",
+  "name": "chatter-box",
   "version": "0.0.1",
   "description": "Channel based chat app",
   "main": "app.js",
-  "homepage": "https://quick-chat.now.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js",
+    "md2pdf": "markdown-pdf -s /home/lxde/Documents/projects/github/chat-app/docs/project-report.css",
+    "deploy": "now --target production --public"
+  },
+  "engines": {
+    "node": "12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisabdus/chat-app.git"
+  },
+  "homepage": "https://github.com/thisisabdus/chat-app#readme",
+  "bugs": {
+    "url": "https://github.com/thisisabdus/chat-app/issues"
   },
   "author": "@thisisAbdus <dev.abdus@gmail.com>",
   "license": "MIT",
@@ -20,6 +32,14 @@
     "express-handlebars": "^3.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.4",
+    "node-fetch": "^2.6.0",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.0.0",
+    "duplexer": "^0.1.1",
+    "markdown-pdf": "^9.0.0",
+    "split": "^1.0.1",
+    "through": "^2.3.8"
   }
 }

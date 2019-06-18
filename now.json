@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "alias": ["quick-chat"],
+  "env": {
+    "NODE_ENV": "production",
+    "DB_URL": "@chat-app-database-url",
+    "SENDGRID_API_KEY": "@chat-app-sendgrid-api-key",
+    "JWT_SECRET": "@chat-app-jwt-secret"
+  },
+  "github": {
+    "enabled": false
+  }
+}

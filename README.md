@@ -1,40 +1,67 @@
-<p align="center">
-    <h1>Chat App</h1>
-    <a href="https://codeclimate.com/github/thisisabdus/chat-app/maintainability"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/maintainability" /></a>
-    <a href="https://codeclimate.com/github/thisisabdus/chat-app/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7b5aaf13f61105361d3b/test_coverage" /></a>
-    <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" /></a>
-    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
-    <a href="https://david-dm.org/thisisabdus/chat-app"><img src="https://david-dm.org/thisisabdus/chat-app.svg" /></a>
-    <br><br>
-    Chat App built using <a href="https://socket.io">Socket.io</a>, NodeJS and Vanilla JavaScript 🔥 This is my first project where I successfully implemented web-sockets and Real-Time data exchange between server and client. 
+<h1 align="center">Welcome to Chat Application  👋</h1>
+<p>
+  <img src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/node-12.0.0-blue.svg" />
+  <a href="https://github.com/thisisabdus/chat-app#readme">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/thisisabdus/chat-app/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/thisisabdus/chat-app/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+  <a href="https://twitter.com/thisisabdus">
+    <img alt="Twitter: thisisabdus" src="https://img.shields.io/twitter/follow/thisisabdus.svg?style=social" target="_blank" />
+  </a>
 </p>
 
-### Features
+> A chat application built using NodeJS, JavaScript, MongoDB and Express
 
-- 💬 Text Messaging 
-- 🖼 Image Sharing
-- 💬 Check who is typing a message in real time
-- 💮 Preview images before upload
-- 🔔 Notification Sound on New Message
-- 🏚 Channelized Chat
-- 🛠 Online Count 
-- 💬 Text to Speech
+### 🏠 [Homepage](https://github.com/thisisabdus/chat-app#readme)
 
-### TODO
+## Prerequisites
 
-| Sl No | Task                              | Status  |
-|-------|-----------------------------------|---------|
-| 1     | Write README                      | Pending |
-| 2     | Basic Chat Functionalities        | Done    |
-| 3     | Text Messaging                    | Done    |
-| 4     | Image Sharing                     | Done    |
-| 5     | _user is Typing..._ status        | Done    |
-| 6     | Image Preview Before Upload       | Done    |
-| 7     | Notification Sound on New Message | Done    |
-| 8     | Channelized Chat                  | Done    |
-| 9     | Online Count                      | Done    |
-| 10    | Offline Count                     | Pending |
-| 11    | Implement Login System            | Pending |
-| 12    | Who joins, Who leaves             | Pending |
-| 13    | Text to Speech                    | Done    |
-| 14    | Private Messaging                 | Pending |
+- node 12.0.0
+
+## Install
+
+```sh
+npm install
+```
+
+## Usage
+
+```sh
+npm run start
+```
+
+## Run tests
+
+```sh
+
+```
+
+## Author
+
+👤 **Abdus Samad Azad**
+
+- Twitter: [@thisisabdus](https://twitter.com/thisisabdus)
+- Github: [@thisisabdus](https://github.com/thisisabdus)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/thisisabdus/chat-app/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2019 [Abdus Samad Azad](https://github.com/thisisabdus).<br />
+This project is [MIT](https://github.com/thisisabdus/chat-app/blob/master/LICENSE) licensed.
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

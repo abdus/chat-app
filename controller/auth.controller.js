@@ -2,6 +2,7 @@ const { userSchema } = require('../db');
 const { decodeToken, generateJWT } = require('../auth/jwt.auth');
 const { parseJWT } = require('../utils/helpers');
 const sendMail = require('../lib/sendMail');
+const { uploadImage } = require('../utils/helpers');
 
 /**
  * This middleware checks if a user is loggedin or not.
@@ -71,7 +72,7 @@ const isLoggedIn = (req, res, next) => {
  * @param {*} next - Express next
  */
 const handleSignUp = (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, profileImage } = req.body;
 
   if (!name || !email || !password) {
     // If email or password or name is missing
@@ -85,7 +86,8 @@ const handleSignUp = (req, res, next) => {
   // Check db and see if the email is already exists
   userSchema
     .find({ email: email })
-    .then(user => {
+    .then(async user => {
+      uploadImage(profileImage, 'somename.png');
       if (user.length === 0) {
         // user.length === 0 means there is no user with this email
         new userSchema({

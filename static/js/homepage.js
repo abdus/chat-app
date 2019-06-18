@@ -8,7 +8,11 @@ const forgotPasswordForm__div = document.querySelector('#forgot-password-form');
 const backToLogin__div = document.querySelector('#back-to-login');
 const formMessageContainer__div = document.querySelectorAll('.message-box'); // [0] -> login; [1] -> signup; [2] -> reset password
 const closeModel__button = document.querySelectorAll('.model .action .close');
+const profileImage__div = document.querySelector('#profileimage');
 
+/**
+ * Toggle Form
+ */
 const toggleForm = () => {
   login__div.classList.toggle('show');
   signup__div.classList.toggle('show');
@@ -44,15 +48,24 @@ closeModel__button.forEach(c => {
 });
 
 /** Handle SignUp form submission */
+
+const imgToBase64 = file =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = e => resolve(e.target.result);
+  });
+
 const signUpForm = signup__div.childNodes[1];
 
-signUpForm.addEventListener('submit', e => {
+signUpForm.addEventListener('submit', async e => {
   e.preventDefault();
 
   const formData = JSON.stringify({
     name: signUpForm.elements['name'].value,
     email: signUpForm.elements['email'].value,
     password: signUpForm.elements['password'].value,
+    profileImage: await imgToBase64(profileImage__div.files[0]),
   });
 
   fetch('/signup', {

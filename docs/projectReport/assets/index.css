@@ -1,0 +1,157 @@
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+
+body {
+  margin: 0;
+  font-family: 'Poppins';
+  color: #2b2b2b;
+  font-size: 0.8rem;
+  line-height: calc(0.8rem + 7px);
+}
+
+pre {
+  padding: 10px;
+  overflow: hidden;
+  border: 0;
+  color: #141414;
+  /* box-shadow: 0 0 10px 0 lightgray; */
+  background: #f1f1f1;
+  width: 92%;
+  margin: 8px auto;
+  font-size: 0.6rem;
+  line-height: calc(0.6rem + 5px);
+  font-family: 'Fira Code', monospace;
+  border-radius: 2px;
+}
+
+blockquote {
+  border: 0;
+  /* border-left: 5px solid gray; */
+  margin: 4px 10px;
+  padding: 0 10px;
+  color: gray !important;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+tr,
+td {
+  border: 1px solid lightgray;
+  padding: 6px;
+}
+
+th {
+  background: lightgray;
+}
+
+img {
+  display: block;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  width: 90%;
+  margin: 20px auto;
+}
+
+ul ul,
+ol ol {
+  margin: 2px inherit;
+}
+
+/* THEME */
+/* //////////////////////////////// */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
