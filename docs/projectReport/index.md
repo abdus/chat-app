@@ -1,7 +1,7 @@
 <!-- Section: License -->
 <h1 style="text-align: center">LICENSE</h1>
 
-\n\n
+\n
 
 Copyright **2019** **Abdus Samad Azad**
 
@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <!-- Section 0: Certificate -->
 
 <h1 style="text-align: center">CERTIFICATE</h1>
+
 \n
 
 I, **Abdus Samad Azad** (UT1712910001) certify that the BCA Pre-Final year Project Report entitled
@@ -121,7 +122,7 @@ And the disadvantages are, well, let us know if you find any. We will try our be
 
 \n\n\n
 
-# Software Requiremnt Specification
+# Software Specification
 
 ## Project Planning
 
@@ -130,7 +131,7 @@ The approach which is used to develop this application, is Feature Driven Develo
 We, a team of two students, developed this application from ground-up. And we learned a lot while we developed this application. Following are the names of the students:
 
 1. **Abdus Samad Azad** (www.thisisabdus.dev)
-2. **Shakir Mirza**
+2. **Shakir Ahmed**
 
 Initial features we've planned for this project were:
 
@@ -203,9 +204,14 @@ This product is released under MIT Open-Source license. This product doesn't com
 ## Software Requirement Specification
 
 - **Physical Specification**
-  TODO: ERD
-  TODO: DFD
-  TODO: FLOWCHART
+
+  **ERD Diagram**
+
+  ![](./assets/img/erd.png)
+
+  **DFD Diagram**
+
+  ![](./assets/img/dfd.png)
 
 - **Input Specification**
   This block will help us understand what type of data is expected form a user.
@@ -237,6 +243,20 @@ This product is released under MIT Open-Source license. This product doesn't com
 \n\n\n
 
 # Source Code And Snapshots
+
+### Snapshots
+
+- **Login Page**
+
+  ![](./assets/img/snapshot-login-window.png)
+
+- **Signup Page**
+
+  ![](./assets/img/snapshot-signup-window.png)
+
+- **Chat Window**
+
+  ![](./assets/img/snapshot-chat-window.png)
 
 ### Source Code
 
@@ -1757,16 +1777,35 @@ For any query, please contact <a href="mailto:mail@thisisabdus.dev">mail@thisisa
 
 </html>
 ```
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+<!-- Section 0: Certificate -->
 
-### Snapshots
+<h1 style="text-align: center">CERTIFICATE</h1>
 
-Here are a few snapshots form the application.
+\n
 
-- **Login Page**
-  ![login page](./assets/img/snapshot-login-window.png)
+I, **Shakir Ahmed** (UT1712910063) certify that the BCA Pre-Final year Project Report entitled
+“Development of Chat Web Application” is done by me and my partner and it is an authentic work carried out by me at Anandaram Dhekial Phookan College. The matter embodied in this project work has not been submitted earlier for the award of any degree or diploma to the best of my knowledge and belief.
+\n\n
+**Signature of the Student**
+Date:
+\n\n
+Certified that the Project Report entitled "**Development of Online Chat Web Application**” done by the above student is completed under my guidance.
+\n
+**Signature of the Supervisor**  
+Date:
+\n
+**Organisation Name**: Anandaram Dhekial Phookan College, Nagaon
 
-- **Signup Page**
-  ![signup page](./assets/img/snapshot-signup-window.png)
+\n\n\n\n\n\n\n\n\n\n\n\n
 
-- **Main Chat Window**
-  ![main chat window](./assets/img/snapshot-chat-window-full.png)
+<!-- Section: 0.1: Undertaking -->
+<h1 style="text-align: center">UNDERTAKING: ANTI-PLAGIARISM</h1>
+\n\n
+I, hereby, declare that the material/ content presented in the report are free from plagiarism and is properly cited and written in my own words. In case, plagiarism is detected at any stage, I shall be solely responsible for it.
+
+\n\n
+**Signature of Student**
+Shakir Ahmed
+UT1712910063
+
