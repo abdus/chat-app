@@ -66,7 +66,8 @@ signUpForm.addEventListener("submit", async (e) => {
     email: signUpForm.elements["email"].value,
     password: signUpForm.elements["password"].value,
     profileImage: await imgToBase64(
-      profileImage__div.files[0] || "https://i.ibb.co/9sdMm4t/avatar.jpg"
+      (profileImage__div && profileImage__div.files[0]) ||
+        "https://i.ibb.co/9sdMm4t/avatar.jpg"
     ),
   });
 
