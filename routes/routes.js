@@ -1,79 +1,79 @@
-const r = require('express').Router();
-const { messageSchema, userSchema } = require('../db');
-const roomRoute = require('./rooms');
+const r = require("express").Router();
+const { messageSchema, userSchema } = require("../db");
+const roomRoute = require("./rooms");
 const {
   isLoggedIn,
   handleSignUp,
   handleSignIn,
-} = require('../controller/auth.controller');
+} = require("../controller/auth.controller");
 
 /** GET: HOMEPAGE */
-r.get('/', isLoggedIn, (req, res) => {
+r.get("/", isLoggedIn, (req, res) => {
   console.log(req.auth);
-  if (req.auth.code === 100) return res.redirect('/room/general');
-  else res.render('index', { layout: 'index' });
+  if (req.auth.code === 100) return res.redirect("/room/general");
+  else res.render("index", { layout: "index" });
 });
 
 /** POST: Sign In */
-r.post('/signin', handleSignIn, (req, res) => {
+r.post("/signin", handleSignIn, (req, res) => {
   res.send(req.handleSignIn);
 });
 
 /** POST: Sign up */
-r.post('/signup', handleSignUp, (req, res) => {
+r.post("/signup", handleSignUp, (req, res) => {
   console.log(req.handleSignup);
   res.send(req.handleSignup);
 });
 
 /** GET: Chat Messages */
-r.get('/messages/:room', (req, res) => {
+r.get("/messages/:room", (req, res) => {
   messageSchema
     .find({ chatRoom: req.params.room })
     .sort({ time: 1 })
-    .then(data => res.json(data))
-    .catch(err => res.json(err));
+    .then((data) => res.json(data))
+    .catch((err) => res.json(err));
 });
 
 /** GET: Logout */
-r.get('/logout', (req, res) => {
+r.get("/logout", (req, res) => {
   req.auth = {
     code: 401,
-    message: 'Unauthorized',
+    message: "Unauthorized",
     userID: null,
   };
-  res.clearCookie('jwt');
-  return res.redirect('/');
+  res.clearCookie("jwt");
+  return res.redirect("/");
 });
 
 /** GET: Email Verify */
-r.get('/verify/:token', (req, res) => {
+r.get("/verify/:token", (req, res) => {
   userSchema
     .findOne({ emailVerificationToken: req.params.token })
     .exec()
-    .then(user => {
+    .then((user) => {
       if (!user || user.length === 0) {
-        return res.render('emailVerification', {
-          message: 'No User Found With This Token',
-          code: '404',
-          layout: 'emailVerified',
+        return res.render("emailVerification", {
+          message: "No User Found With This Token",
+          code: "404",
+          layout: "emailVerified",
           token: req.params.token,
         });
       } else {
         user.isEmailVerified = true;
-        user.emailVerificationToken = '';
+        user.emailVerificationToken = "";
         user.save();
 
-        return res.render('emailVerification', {
-          message: 'User Verified',
+        return res.render("emailVerification", {
+          message: "User Verified",
           code: 100,
-          layout: 'emailVerified',
+          layout: "emailVerified",
           token: req.params.token,
         });
       }
     });
 });
 
-r.use('/room', isLoggedIn, roomRoute);
+r.use("/room", isLoggedIn, roomRoute);
 
 // exports
 module.exports = r;

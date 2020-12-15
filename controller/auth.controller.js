@@ -1,8 +1,8 @@
-const { userSchema } = require('../db');
-const { decodeToken, generateJWT } = require('../auth/jwt.auth');
-const { parseJWT } = require('../utils/helpers');
-const sendMail = require('../lib/sendMail');
-const { uploadImage } = require('../utils/helpers');
+const { userSchema } = require("../db");
+const { decodeToken, generateJWT } = require("../auth/jwt.auth");
+const { parseJWT } = require("../utils/helpers");
+const sendMail = require("../lib/sendMail");
+const { uploadImage } = require("../utils/helpers");
 
 /**
  * This middleware checks if a user is loggedin or not.
@@ -13,15 +13,15 @@ const { uploadImage } = require('../utils/helpers');
  */
 const isLoggedIn = (req, res, next) => {
   decodeToken(parseJWT(req.cookies))
-    .then(data => {
+    .then((data) => {
       userSchema
         .findById(data.id)
-        .then(user => {
+        .then((user) => {
           if (!user) {
             // If there is no user available with the ID(nearly impossible case)
             req.auth = {
               code: 401,
-              message: 'User Not Found',
+              message: "User Not Found",
               userID: null,
             };
 
@@ -30,14 +30,14 @@ const isLoggedIn = (req, res, next) => {
             // User is logged-in
             req.auth = {
               code: 100,
-              message: 'User is Logged In',
+              message: "User is Logged In",
               userID: data.id,
             };
 
             return next();
           }
         })
-        .catch(e => {
+        .catch((e) => {
           // If there is any error related to database
           req.auth = {
             code: 500,
@@ -48,15 +48,15 @@ const isLoggedIn = (req, res, next) => {
           return next();
         });
     })
-    .catch(e => {
+    .catch((e) => {
       req.auth = {
         code: 401,
         message:
-          e.name === 'TokenExpiredError'
-            ? 'Token Expired'
-            : e.name === 'JsonWebTokenError'
+          e.name === "TokenExpiredError"
+            ? "Token Expired"
+            : e.name === "JsonWebTokenError"
             ? e.message
-            : 'JWT Not Activated',
+            : "JWT Not Activated",
         userID: null,
       };
 
@@ -86,8 +86,8 @@ const handleSignUp = (req, res, next) => {
   // Check db and see if the email is already exists
   userSchema
     .find({ email: email })
-    .then(async user => {
-      uploadImage(profileImage, 'somename.png');
+    .then(async (user) => {
+      uploadImage(profileImage, "somename.png");
       if (user.length === 0) {
         // user.length === 0 means there is no user with this email
         new userSchema({
@@ -96,24 +96,23 @@ const handleSignUp = (req, res, next) => {
           password: password,
         })
           .save()
-          .then(e => {
+          .then((e) => {
             // This will execute only if the data insertion is successful
             // send a email confirmation mail
             sendMail(
               e.email,
-              `${process.env.npm_package_homepage}/verify/${
-                e.emailVerificationToken
-              }`
-            ).catch(err => console.log(err.message));
+              `${process.env.npm_package_homepage}/verify/${e.emailVerificationToken}`
+            )
+              .catch((err) => console.log(err.message));
 
             req.handleSignup = {
               code: 100,
-              message: 'Sign Up successful',
+              message: "Sign Up successful",
             };
 
             return next();
           })
-          .catch(e => {
+          .catch((e) => {
             // Handle databse error
             req.handleSignup = {
               code: 500,
@@ -132,7 +131,7 @@ const handleSignUp = (req, res, next) => {
         return next();
       }
     })
-    .catch(e => {
+    .catch((e) => {
       // Handle db query error
       req.handleSignup = {
         code: 500,
@@ -165,7 +164,7 @@ const handleSignIn = (req, res, next) => {
     userSchema
       .findOne({ email: email.toLowerCase() })
       .exec()
-      .then(user => {
+      .then((user) => {
         if (!user || user.length === 0) {
           req.handleSignIn = {
             code: 400,
@@ -179,7 +178,7 @@ const handleSignIn = (req, res, next) => {
         // If there is a user, check if the password matches
         user
           .comparePassword(password)
-          .then(isMatched => {
+          .then((isMatched) => {
             if (isMatched && user.isEmailVerified) {
               req.handleSignIn = {
                 code: 100,
@@ -187,7 +186,7 @@ const handleSignIn = (req, res, next) => {
                 jwt: generateJWT({ id: user._id }),
               };
               // set cookie
-              res.cookie('jwt', req.handleSignIn.jwt, { httpOnly: false });
+              res.cookie("jwt", req.handleSignIn.jwt, { httpOnly: false });
 
               return next();
             } else {
@@ -200,7 +199,7 @@ const handleSignIn = (req, res, next) => {
               return next();
             }
           })
-          .catch(e => {
+          .catch((e) => {
             req.handleSignIn = {
               code: 500,
               message: e.message,
@@ -210,7 +209,7 @@ const handleSignIn = (req, res, next) => {
             return next();
           });
       })
-      .catch(e => {
+      .catch((e) => {
         req.handleSignIn = {
           code: 500,
           message: e.message,
