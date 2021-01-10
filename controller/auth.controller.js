@@ -101,9 +101,8 @@ const handleSignUp = (req, res, next) => {
             // send a email confirmation mail
             sendMail(
               e.email,
-              `${process.env.npm_package_homepage}/verify/${e.emailVerificationToken}`
-            )
-              .catch((err) => console.log(err.message));
+              `${req.protocol}://${req.get("host")}/verify/${e.emailVerificationToken}`
+            ).catch((err) => console.log(err.message));
 
             req.handleSignup = {
               code: 100,

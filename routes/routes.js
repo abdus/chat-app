@@ -21,7 +21,6 @@ r.post("/signin", handleSignIn, (req, res) => {
 
 /** POST: Sign up */
 r.post("/signup", handleSignUp, (req, res) => {
-  console.log(req.handleSignup);
   res.send(req.handleSignup);
 });
 

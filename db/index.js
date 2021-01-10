@@ -7,7 +7,7 @@ mongoose.connect(
   process.env.NODE_ENV === 'production'
     ? process.env.DB_URL
     : 'mongodb://127.0.0.1/chat-app',
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useUnifiedTopology: true}
 );
 
 module.exports = {
